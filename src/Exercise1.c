@@ -16,14 +16,25 @@ ______________________________________
 #include <math.h>
 
 void Ex1(int n){
-	//Your codes here
-    
+    int l=1;
+    for(int i = 0; i < n; i++){
+        for(int s = 1; s <= n - i; s++){
+            printf("");
+        }
+        for(int j = 0; j <= i; j++){
+            if(j == 0 || i == 0) l = 1;
+            else l = l * (i - j + 1) / j;
+            printf("%d ", l);
+        }
+        printf("\n");
+    }
 }
+
 
 int main(int argc, char *argv[]) {
 	//testing variable, applying it to your algorithm for auto-evaluating
 	int testcase = atoi(argv[1]);
 	
-	Ex1(testcase);
+	Ex1(testcase+1);
 	return 0;
 }
