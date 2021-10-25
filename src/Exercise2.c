@@ -52,9 +52,31 @@ void printArray(int a[SIZE][SIZE], int m, int n)
 void Ex2(int arr[], int m, int n){
 	int a[SIZE][SIZE];
 	Array2Dconverter(arr,a,m,n);
-	//Your codes here
+	for(int i = 0; i < n; ++i){
+        if(i % 2 == 1){
+            for(int j = 0; j < m; j++){
+                for(int x = j + 1; x < m; x++){
+                    if(a[x][i] < a[j][i]){
+                        int temp = a[x][i];
+                        a[x][i] = a[j][i];
+                        a[j][i] = temp;
+                    }
+                }
+            }
+        }else{
+            for(int j = 0; j < m; j++){
+                for(int y = j + 1; y < m; y++){
+                    if(a[y][i] > a[j][i]){
+                        int temp = a[y][i];
+                        a[y][i] = a[j][i];
+                        a[j][i] = temp;
+                    }
+                }
+            }
+        }
+    }
 
-	printArray(a, m, n);
+    printArray(a, m, n);
 }
 
 int main(int argc, char *argv[]) {

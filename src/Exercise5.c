@@ -35,9 +35,17 @@ void Array2Dconverter(int arr[], int a[SIZE][SIZE], int m, int n)
 
 void Ex5(int arr[], int m, int n){
 	int a[SIZE][SIZE];
+	int max=0;
+	int min=100;
 	Array2Dconverter(arr,a,m,n);
-	//Your codes here
-
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			if(min > a[i][j]) min=a[i][j];
+        }
+        if(max<min) max =min;
+        min = 1000;
+    }
+    printf("%d", max);
 }
 
 int main(int argc, char *argv[]) {

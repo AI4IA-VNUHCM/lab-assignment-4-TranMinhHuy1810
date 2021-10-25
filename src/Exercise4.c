@@ -46,27 +46,50 @@ void printArray(int a[SIZE][SIZE], int m, int n)
 		printf("\n");
 	}
 }
-
 void insertRow(int arr[], int a[SIZE][SIZE],int rowIndex, int m, int n){
-	//Your codes here
-	
+	for(int i=m;i >rowIndex;i--){
+        for(int j=0;j<n;j++) {
+			a[i][j] = a[i-1][j];
+		}
+    }
+    for(int j=0;j<n;j++){
+        a[rowIndex][j]=arr[j];
+    }
+    printArray(a,m+1,n);
 }
-
 void removeRow(int a[SIZE][SIZE], int rowIndex, int m, int n){
-	//Your codes here
-	
+	for(int j=0;j<n;j++){
+		a[rowIndex][j] = 0;
+	}
+    for(int i=rowIndex;i<m;i++){
+        for(int j=0;j<n;j++){
+			a[i][j]=a[i+1][j];
+		}
+    }
+	printArray(a,m-1,n);
 }
-
 void insertCol(int arr[], int a[SIZE][SIZE],int colIndex, int m, int n){
-	//Your codes here
-	
+	for(int i=0; i<m;i++){
+		for(int j=n;j>colIndex;j--){
+			a[i][j]=a[i][j-1];
+        }
+    }
+    for(int i=0;i<m;i++){
+		a[i][colIndex]=arr[i];
+	} 
+    printArray(a,m,n+1);
 }
-
 void removeCol(int a[SIZE][SIZE], int colIndex, int m, int n){
-	//Your codes here
-	
+	for(int i=0;i<m;i++){
+		a[i][colIndex]=0;
+    }
+    for(int i=0;i<m;i++){
+		for(int j=colIndex;j<n;j++){
+			a[i][j]=a[i][j+1];
+        }
+    }
+    printArray(a,m,n-1);
 }
-
 int main(int argc, char *argv[]) {
 	//testing variable, applying it to your algorithm for auto-evaluating
 	int row = atoi(argv[1]);
@@ -87,11 +110,8 @@ int main(int argc, char *argv[]) {
 			testcase[i] = atoi(argv[i+5]);
 		}
 		Array2Dconverter(testcase,a,row,col);
-		if(choice == 2)
-			removeRow(a,loc,row,col);
-		else
-			removeCol(a,loc,row,col);
-
+		if(choice == 2) removeRow(a,loc,row,col);
+		else removeCol(a,loc,row,col);
 	}
 	else if(choice == 1){
 		int in_row[col],column;
@@ -121,8 +141,7 @@ int main(int argc, char *argv[]) {
 		Array2Dconverter(testcase,a,row,col);
 		insertCol(in_col,a,loc,row,col);
 	}
-	else
-		printf("Invalid option!");
+	else printf("Invalid option!");
 
 	return 0;
 }
